@@ -1,1 +1,4 @@
 Datasets/
+__pycache__
+ckpt/
+log_dir/
