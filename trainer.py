@@ -3,7 +3,7 @@ from pytorch_lightning.callbacks import EarlyStopping, ModelCheckpoint
 from pytorch_lightning.loggers import TensorBoardLogger
 import Codes.config as config
 from Codes.model import FeatureExtractor
-from Codes.dataModule import FNAC_DataModule
+from Codes.dataModule import FNAC_DataModule, FNAC_DataModuleFull
 
 logger = TensorBoardLogger(
     save_dir=config.LOG_DIR, name=config.LOG_NAME, version=config.VERSION
@@ -11,7 +11,7 @@ logger = TensorBoardLogger(
 
 callbacks = [EarlyStopping(monitor='train_loss'), ModelCheckpoint(dirpath=config.MODEL_CKPT_DIR, filename=config.MODEL_CKPT_FILENAME, monitor='val_loss', mode="min", save_top_k = 3)]
 
-dm = FNAC_DataModule(config.TRANSFORM, config.AUGMENTATION, root_dir=config.ROOT_DATA_DIR, batch_size=config.BATCH_SIZE)
+dm = FNAC_DataModuleFull(config.TRANSFORM, config.AUGMENTATION, root_dir=config.ROOT_DATA_DIR, batch_size=config.BATCH_SIZE)
 
 num_classes = config.NUM_CLASSES
 model = FeatureExtractor(num_classes=num_classes, lr=config.LR, img_size=224)

@@ -93,8 +93,8 @@ class FeatureExtractor(pl.LightningModule):
         labels_list = np.stack(labels_list, axis=0)
         print(features.shape)
         print(labels_list.shape)
-        np.save(f'{filePath}/{stage}_resnet18_fnac_features.npy', features)
-        np.save(f'{filePath}/{stage}_resnet18_fnac_labels.npy', labels_list)
+        np.save(f'{filePath}/{stage}_resnet18_fnacFull_features.npy', features)
+        np.save(f'{filePath}/{stage}_resnet18_fnacFull_labels.npy', labels_list)
 
 
     
